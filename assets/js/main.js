@@ -32,7 +32,7 @@ $('#start, #next').click(function() {
       } if (sumCounter === 10) {
         $('#trivias').empty();
         $('#next').addClass('hidden');
-        $('#trivias').append('<h3 class="end"> Obtuviste ' + counterCorrect + ' respuestas correctas y ' + counterIncorrect + ' respuestas incorrectas. </h3>')
+        $('#trivias').append('<h3 class="end"> You got ' + counterCorrect + ' correct answers and ' + counterIncorrect + ' incorrect answers. </h3>')
       }
     });// data
 });
