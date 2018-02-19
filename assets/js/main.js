@@ -1,14 +1,14 @@
-$('#start, #next').click(function() {
+let counterCorrect = 0;
+let counterIncorrect = 0;
 
+$('#start, #next').click(function() {
   fetch(`https://opentdb.com/api.php?amount=30&category=17&difficulty=easy&type=multiple`)
 
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
+    .then(response => response.json())
+    .then(data => {
       $('#intro, .answer').remove();
       $('#trivias').empty();
-      $('#next').removeAttr("class");
+      $('#next').removeAttr('class');
 
       const datos = data.results;
       const arrayDatos = datos.sort();
@@ -18,15 +18,18 @@ $('#start, #next').click(function() {
       // función seleccion
       $('.option').click(function() {
         const select = $(this).val();
-        if (select == "correct") {
-          $(this).addClass("correct");
-          $('#next').after('<h3 class="answer">¡Correct! </h3>')
-        }else{
-          $(this).addClass("incorrect");
-          $('#next').after('<h3 class="answer">¡Incorrect! The correct answer is: "' + data.results[0].correct_answer + '" </h3>')
+        if (select === 'correct') {
+          $(this).addClass('correct');
+          $('#next').after('<h3 class="answer">¡Correct! </h3>');
+          counterCorrect++;
+          console.log(counterCorrect);
+        } else {
+          $(this).addClass('incorrect');
+          $('#next').after('<h3 class="answer">¡Incorrect! The correct answer is: "' + data.results[0].correct_answer + '" </h3>');
+          counterIncorrect++;
+          console.log(counterIncorrect);
         }
       });
-
-    });//data
+    });// data
 });
 
